@@ -19,3 +19,24 @@ async function fetch_user_name(
   // This could be a database request.
   return "";
 }
+
+class Box<T> {
+  protected T $data;
+
+  public function __construct(T $data) {
+    $this->data = $data;
+  }
+
+  public function getData(): T {
+    return $this->data;
+  }
+}
+
+// Traditional: Risky and easy to misplace tags!
+$user_name = 'Fred';
+echo "<tt>Hello <strong>$user_name</tt></strong>";
+
+// XHP: Typechecked, well-formed, and secure
+$user_name = 'Fred';
+$xhp = <tt>Hello <strong>{$user_name}</strong></tt>;
+echo await $xhp->toStringAsync();
